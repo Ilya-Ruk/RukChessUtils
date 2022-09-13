@@ -1,0 +1,7 @@
+.exe
+.dll
+
+*.nn
+*.nnue
+
+*.txt
