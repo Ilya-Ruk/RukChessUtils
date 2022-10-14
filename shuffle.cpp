@@ -57,7 +57,7 @@ void ShufflePositions(void)
 	}
 }
 
-int main(void)
+int main(int argc, char* argv[])
 {
 	FILE* FileIn;
 	FILE* FileOut;
@@ -69,9 +69,15 @@ int main(void)
 	PositionItem** PositionPointer;
 	PositionItem* PositionItemPointer;
 
+	if (argc < 3) {
+		printf("Usage: shuffle.exe games_in.fen games_out.fen\n");
+
+		return 0;
+	}
+
   SetRandState(time(NULL));
 
-	FileIn = fopen("games_in.fen", "r");
+	FileIn = fopen(argv[1], "r");
 
 	if (FileIn == NULL) { // File open error
 		printf("File 'games_in.fen' open error!\n");
@@ -79,7 +85,7 @@ int main(void)
 		exit(0);
 	}
 
-	FileOut = fopen("games_out.fen", "w");
+	FileOut = fopen(argv[2], "w");
 
 	if (FileOut == NULL) { // File open error
 		printf("File 'games_out.fen' open error!\n");
