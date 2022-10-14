@@ -1,7 +1,9 @@
-.exe
-.dll
+*.exe
+*.dll
 
 *.nn
 *.nnue
 
 *.txt
+
+*.xlsx
