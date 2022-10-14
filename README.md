@@ -2,7 +2,7 @@
 Utils for usage with the RukChessTrainer.
 
 ## split_file
-Split FEN-file into validation (10%) and training (90%) data sets.
+Split FEN-file into validation (5%) and training (95%) data sets.
 
 #### Build
 
@@ -22,3 +22,32 @@ Extracts the weights of the hidden layer from the neural network file.
 #### Usage
 
     hidden_weights.exe rukchess.nnue hidden_weights.txt
+
+## merge_files
+Merge two files in one.
+
+#### Build
+
+    gcc -O3 -Wall -Wextra -Wshadow -flto merge_files.cpp -o merge_files.exe
+
+#### Usage
+
+    merge_files.exe file_in_1.fen file_in_2.fen file_out.fen
+
+## shuffle
+Shuffle positions.
+
+#### Build
+
+    gcc -O3 -Wall -Wextra -Wshadow -flto shuffle.cpp -o shuffle.exe
+
+#### Usage
+
+    shuffle.exe games_in.fen games_out.fen
+
+## rand64
+Distribution of random numbers for different pseudo-random number generators and obtaining a normal distribution.
+
+#### Build
+
+    gcc -O3 -Wall -Wextra -Wshadow -flto rand64.cpp -o rand64.exe
