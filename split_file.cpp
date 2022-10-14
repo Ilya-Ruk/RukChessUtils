@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define VALID_DATA 10 // %
+#define VALID_DATA (100 / 5) // 5%
 
 typedef unsigned long long U64;
 
@@ -13,9 +13,10 @@ int main(int argc, char* argv[])
 
 	char Buf[512];
 
-	U64 TotalPositions;
-
 	U64 PositionNumber;
+
+	U64 ValidPositions;
+  U64 TrainPositions;
 
 	if (argc < 4) {
 		printf("Usage: split_file.exe file_in.fen file_valid.fen file_train.fen\n");
@@ -47,42 +48,34 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-	// The first cycle to get the number of positions
-
-	printf("Read file (first cycle)...\n");
-
-	TotalPositions = 0;
-
-	while (fgets(Buf, sizeof(Buf), FileIn) != NULL) {
-		++TotalPositions;
-	}
-
-	printf("Read file (first cycle)...DONE\n");
-
-	printf("Total positions = %llu\n", TotalPositions);
-
-	// Set the pointer to the beginning of the file
-
-	fseek(FileIn, 0, SEEK_SET);
-
-	// The second cycle for reading positions
-
-	printf("Read file (second cycle)...\n");
+	printf("Read file...\n");
 
 	PositionNumber = 0;
+
+  ValidPositions = 0;
+  TrainPositions = 0;
 
 	while (fgets(Buf, sizeof(Buf), FileIn) != NULL) {
 		if ((PositionNumber % VALID_DATA) == 0) { // Valid data
 			fprintf(FileValid, "%s", Buf);
+
+      ValidPositions++;
 		}
 		else { // Train data
 			fprintf(FileTrain, "%s", Buf);
+
+      TrainPositions++;
 		}
 
-		++PositionNumber;
+		PositionNumber++;
 	}
 
-	printf("Read file (second cycle)...DONE\n");
+	printf("Read file...DONE\n");
+
+  printf("Valid positions: %llu\n", ValidPositions);
+  printf("Train positions: %llu\n", TrainPositions);
+
+  printf("Total positions: %llu\n", ValidPositions + TrainPositions);
 
 	fclose(FileIn);
 	fclose(FileValid);
