@@ -13,15 +13,15 @@ Split FEN-file into validation (5%) and training (95%) data sets.
     split_file.exe file_in.fen file_valid.fen file_train.fen
 
 ## hidden_weights
-Extracts the weights of the hidden layer from the neural network file.
+Extracts the weights and biases of the layers from the neural network file.
 
 #### Build
 
-    gcc -O3 -Wall -Wextra -Wshadow -flto hidden_weights.cpp -o hidden_weights.exe
+    gcc -O3 -Wall -Wextra -Wshadow -flto nnue_weights_biases.cpp -o nnue_weights_biases.exe
 
 #### Usage
 
-    hidden_weights.exe rukchess.nnue hidden_weights.txt
+    nnue_weights_biases.exe rukchess.nnue
 
 ## merge_files
 Merge two files in one.
