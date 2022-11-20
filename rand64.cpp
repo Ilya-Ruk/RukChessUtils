@@ -9,12 +9,12 @@
 static uint64_t state; /* The state can be seeded with any value. */
 
 uint64_t SplitMix64(void) {
-	uint64_t z = (state += 0x9e3779b97f4a7c15);
+  uint64_t z = (state += 0x9e3779b97f4a7c15);
 
-	z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
-	z = (z ^ (z >> 27)) * 0x94d049bb133111eb;
+  z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
+  z = (z ^ (z >> 27)) * 0x94d049bb133111eb;
 
-	return z ^ (z >> 31);
+  return z ^ (z >> 31);
 }
 
 // https://prng.di.unimi.it/xoshiro256plusplus.c
@@ -22,24 +22,24 @@ uint64_t SplitMix64(void) {
 static uint64_t s[4];
 
 inline uint64_t rotl(const uint64_t x, int k) {
-	return (x << k) | (x >> (64 - k));
+  return (x << k) | (x >> (64 - k));
 }
 
 uint64_t RandomUInt64_1(void) {
-	const uint64_t result = rotl(s[0] + s[3], 23) + s[0];
+  const uint64_t result = rotl(s[0] + s[3], 23) + s[0];
 
-	const uint64_t t = s[1] << 17;
+  const uint64_t t = s[1] << 17;
 
-	s[2] ^= s[0];
-	s[3] ^= s[1];
-	s[1] ^= s[2];
-	s[0] ^= s[3];
+  s[2] ^= s[0];
+  s[3] ^= s[1];
+  s[1] ^= s[2];
+  s[0] ^= s[3];
 
-	s[2] ^= t;
+  s[2] ^= t;
 
-	s[3] = rotl(s[3], 45);
+  s[3] = rotl(s[3], 45);
 
-	return result;
+  return result;
 }
 
 // http://www.vlasak.biz/cheng/
@@ -129,7 +129,7 @@ int main(void)
   range[0] = min;
 
   for (int i = 1; i <= intervals; ++i) {
-	  range[i] = range[0] + (max - min) / intervals * i;
+    range[i] = range[0] + (max - min) / intervals * i;
   }
 
   int range_out = 0;
@@ -139,7 +139,7 @@ int main(void)
 //    float value = ((float)SplitMix64() / ULONG_MAX) - 0.5;
 //    float value = ((float)RandomUInt64_1() / ULONG_MAX) - 0.5;
 //    float value = ((float)RandomUInt64_2() / ULONG_MAX) - 0.5;
-	  float value = RandomGaussian(0.0f, 0.5);
+    float value = RandomGaussian(0.0f, 0.5);
 
     int found = 0;
 
@@ -183,7 +183,7 @@ int main(void)
   }
 
   if (range_out == 1) {
-	  printf("WARNING: Plotting out of range!\n");
+    printf("WARNING: Plotting out of range!\n");
   }
 
   return 0;
