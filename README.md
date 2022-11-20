@@ -12,7 +12,7 @@ Split FEN-file into validation (5%) and training (95%) data sets.
 
     split_file.exe file_in.fen file_valid.fen file_train.fen
 
-## hidden_weights
+## nnue_weights_biases
 Extracts the weights and biases of the layers from the neural network file.
 
 #### Build
