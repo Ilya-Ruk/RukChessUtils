@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define VALID_DATA (100 / 5) // 5%
+#define VALID_DATA (100 / 10) // 10%
 
 typedef unsigned long long U64;
 
