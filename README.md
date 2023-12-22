@@ -2,7 +2,7 @@
 Utils for usage with the RukChessTrainer.
 
 ## split_file
-Split FEN-file into validation (5%) and training (95%) data sets.
+Split FEN-file into validation (10%) and training (90%) data sets.
 
 #### Build
 
